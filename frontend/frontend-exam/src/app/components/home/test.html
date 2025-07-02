@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luyện Thi TOEIC Online Hiệu Quả</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<style>
+    /* Thiết lập chung */
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        /* Bạn có thể thay đổi font chữ */
+        color: #333;
+        line-height: 1.6;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .btn {
+        padding: 8px 15px;
+        border: 1px solid;
+        border-radius: 3px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 14px;
+        text-transform: uppercase;
+        transition: background-color 0.3s ease;
+    }
+
+    /* --- Top Bar --- */
+    .top-bar {
+        background-color: #28a745;
+        /* Màu xanh lá cây */
+        color: #fff;
+        font-size: 13px;
+        padding: 8px 0;
+    }
+
+    .top-bar-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        /* Cho phép xuống dòng trên màn hình nhỏ */
+    }
+
+    .contact-info span {
+        margin-right: 15px;
+    }
+
+    .contact-info .social-icon {
+        margin-left: 10px;
+        color: #fff;
+    }
+
+    .top-nav a {
+        color: #fff;
+        margin-left: 20px;
+        padding: 5px 0;
+    }
+
+    .top-nav a:hover {
+        text-decoration: underline;
+    }
+
+    /* --- Main Navigation --- */
+    .main-nav {
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .main-nav-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+    }
+
+    .nav-links-left {
+        display: flex;
+    }
+
+    .nav-item {
+        padding: 10px 20px;
+        color: #555;
+        font-weight: 600;
+        font-size: 15px;
+    }
+
+    .nav-item.active {
+        background-color: #ffc107;
+        /* Màu vàng cam */
+        border-radius: 5px;
+        color: #333;
+    }
+
+    .nav-item:not(.active):hover {
+        color: #007bff;
+        /* Màu xanh dương khi hover */
+    }
+
+    .logo img {
+        height: 30px;
+        /* Điều chỉnh kích thước logo nếu cần */
+    }
+
+    .auth-buttons .btn {
+        margin-left: 10px;
+    }
+
+    .btn-register {
+        background-color: #fff;
+        color: #28a745;
+        border-color: #28a745;
+    }
+
+    .btn-register:hover {
+        background-color: #28a745;
+        color: #fff;
+    }
+
+    .btn-login {
+        background-color: #28a745;
+        color: #fff;
+        border-color: #28a745;
+    }
+
+    .btn-login:hover {
+        opacity: 0.9;
+    }
+
+    /* --- Hero Section --- */
+    .hero-section {
+        position: relative;
+        height: 550px;
+        /* Điều chỉnh chiều cao phù hợp */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        text-align: center;
+        background-image: url('banner1.png');
+        /* THAY THẾ BẰNG ĐƯỜNG DẪN ẢNH CỦA BẠN */
+        background-size: cover;
+        background-position: center;
+    }
+
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        /* Lớp phủ tối mờ */
+        z-index: 1;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+    }
+
+    .hero-content h1 {
+        font-size: 3em;
+        margin-bottom: 30px;
+        font-weight: 600;
+    }
+
+    .hero-content ul {
+        font-size: 1.2em;
+        margin-bottom: 40px;
+        text-align: left;
+        /* Căn lề trái cho danh sách */
+        display: inline-block;
+        /* Để ul không chiếm hết chiều rộng và căn giữa */
+    }
+
+    .hero-content ul li {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+    }
+
+    .hero-content ul li i {
+        color: #28a745;
+        /* Màu xanh checkmark */
+        margin-right: 10px;
+        font-size: 1.3em;
+    }
+
+    .btn-primary {
+        background-color: transparent;
+        color: #fff;
+        border-color: #fff;
+        padding: 12px 30px;
+        font-size: 1.2em;
+    }
+
+    .btn-primary:hover {
+        background-color: #fff;
+        color: #333;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+        .main-nav-content {
+            flex-direction: column;
+        }
+
+        .nav-links-left {
+            margin-bottom: 10px;
+        }
+
+        .auth-buttons {
+            margin-top: 10px;
+        }
+
+        .top-bar-content {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .contact-info,
+        .top-nav {
+            margin-bottom: 10px;
+        }
+
+        .top-nav a {
+            margin: 0 10px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .hero-content h1 {
+            font-size: 2.5em;
+        }
+
+        .hero-content ul {
+            font-size: 1.1em;
+        }
+
+        .btn-primary {
+            padding: 10px 25px;
+            font-size: 1em;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .hero-content h1 {
+            font-size: 2em;
+        }
+
+        .hero-content ul li {
+            font-size: 0.95em;
+        }
+
+        .nav-links-left {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .nav-item {
+            margin-bottom: 5px;
+        }
+
+        .contact-info span {
+            display: block;
+            margin-bottom: 5px;
+        }
+    }
+
+    body {
+        font-family: 'Open Sans', sans-serif;
+        background-color: #f5f7fa;
+        /* Nền nhẹ nhàng */
+    }
+
+    /* --- Main Content Layout --- */
+    .main-content-section {
+        display: grid;
+        grid-template-columns: 250px 1fr 280px;
+        /* Sidebar trái, nội dung chính, sidebar phải */
+        gap: 25px;
+        /* Khoảng cách giữa các cột */
+        padding: 30px 15px;
+        align-items: start;
+        /* Căn trên các khối */
+    }
+
+    @media (max-width: 1200px) {
+        .main-content-section {
+            grid-template-columns: 220px 1fr 250px;
+        }
+    }
+
+    @media (max-width: 992px) {
+        .main-content-section {
+            grid-template-columns: 1fr;
+            /* Stack columns on smaller screens */
+            padding: 20px 15px;
+        }
+
+        .sidebar,
+        .right-sidebar {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .lesson-grid {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            /* Adapt grid */
+        }
+    }
+
+    @media (max-width: 576px) {
+        .lesson-grid {
+            grid-template-columns: 1fr;
+            /* Single column on very small screens */
+        }
+    }
+
+
+    /* --- Sidebar (Left) --- */
+    .sidebar {
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        /* Đảm bảo góc bo tròn cho nội dung bên trong */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        /* Đổ bóng nhẹ */
+    }
+
+    .level-filter .filter-header {
+        background-color: #28a745;
+        color: #fff;
+        padding: 15px 20px;
+        font-weight: 700;
+        font-size: 1.1em;
+    }
+
+    .level-filter ul {
+        padding: 10px 0;
+    }
+
+    .level-filter ul li a {
+        display: block;
+        padding: 12px 20px;
+        color: #555;
+        font-weight: 500;
+        transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .level-filter ul li a:hover {
+        background-color: #e9ecef;
+        color: #28a745;
+    }
+
+    .level-filter ul li a.active {
+        background-color: #e0e0e0;
+        color: #28a745;
+        border-left: 5px solid #28a745;
+        /* Dấu hiệu chọn cấp độ */
+        padding-left: 15px;
+        /* Điều chỉnh padding sau khi thêm border */
+    }
+
+    .ad-card {
+        background-color: #f8f9fa;
+        padding: 20px;
+        text-align: center;
+        border-top: 1px solid #eee;
+        /* Đường kẻ phân cách */
+    }
+
+    .ad-card img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+        margin-bottom: 15px;
+    }
+
+    .ad-card h3 {
+        color: #333;
+        font-size: 1.1em;
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+
+    .ad-card p {
+        color: #666;
+        font-size: 0.9em;
+        line-height: 1.4;
+    }
+
+    /* --- Content Area (Main) --- */
+    .content-area {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        /* Khoảng cách giữa các khối ngữ pháp và từ vựng */
+    }
+
+    .content-block {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        padding: 25px;
+    }
+
+    .block-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 15px;
+    }
+
+    .block-header h2 {
+        font-size: 1.6em;
+        color: #333;
+        font-weight: 700;
+        margin: 0;
+    }
+
+    .block-header .view-all {
+        color: #007bff;
+        /* Màu xanh dương cho "Xem tất cả" */
+        font-weight: 600;
+        font-size: 0.95em;
+        transition: color 0.2s ease;
+    }
+
+    .block-header .view-all:hover {
+        color: #0056b3;
+        text-decoration: underline;
+    }
+
+    .lesson-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        /* 4 cột, tự động điều chỉnh */
+        gap: 20px;
+    }
+
+    .lesson-card {
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        overflow: hidden;
+        text-align: center;
+        padding-bottom: 15px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 280px;
+        /* Đảm bảo chiều cao đồng nhất */
+    }
+
+    .lesson-card:hover {
+        transform: translateY(-5px);
+        /* Nâng nhẹ khi hover */
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        /* Đổ bóng mạnh hơn */
+    }
+
+    .lesson-card img {
+        width: 100%;
+        height: 120px;
+        /* Chiều cao cố định cho ảnh */
+        object-fit: cover;
+        /* Đảm bảo ảnh không bị méo */
+        margin-bottom: 10px;
+    }
+
+    .lesson-card h3 {
+        font-size: 1.1em;
+        color: #333;
+        margin-bottom: 15px;
+        padding: 0 10px;
+        font-weight: 600;
+        flex-grow: 1;
+        /* Để tiêu đề chiếm đủ không gian */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .lesson-card .btn-lesson {
+        background-color: #28a745;
+        color: #fff;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 5px;
+        font-size: 0.9em;
+        font-weight: 600;
+        text-transform: uppercase;
+        transition: background-color 0.2s ease;
+        margin: 0 auto;
+        /* Căn giữa nút */
+    }
+
+    .lesson-card .btn-lesson:hover {
+        background-color: #218838;
+    }
+
+    /* --- Right Sidebar --- */
+    .right-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .user-info-card {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        padding: 20px;
+        display: flex;
+        align-items: center;
+    }
+
+    .user-avatar {
+        width: 50px;
+        height: 50px;
+        background-color: #007bff;
+        /* Màu xanh dương cho avatar */
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.8em;
+        font-weight: 700;
+        margin-right: 15px;
+    }
+
+    .user-details p {
+        margin: 0;
+        color: #555;
+        font-size: 0.95em;
+    }
+
+    .user-details p:first-child {
+        font-weight: 600;
+        color: #333;
+        font-size: 1.1em;
+    }
+
+    .members-card {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        padding: 20px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .members-card .fas {
+        font-size: 2.5em;
+        color: #28a745;
+        margin-bottom: 10px;
+    }
+
+    .members-card p {
+        margin: 0;
+        color: #555;
+        font-size: 1.1em;
+        font-weight: 600;
+    }
+
+    .promotion-card {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        padding: 20px;
+        text-align: center;
+    }
+
+    .promotion-card h3 {
+        color: #dc3545;
+        /* Màu đỏ cho "Ưu đãi hấp dẫn" */
+        font-size: 1.4em;
+        margin-bottom: 15px;
+        font-weight: 700;
+    }
+
+    .promotion-card img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+
+    /* --- Footer --- */
+    .main-footer {
+        background-color: #343a40;
+        /* Màu nền tối cho footer */
+        color: #f8f9fa;
+        /* Màu chữ sáng */
+        padding: 40px 0 0;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        /* 3 cột tự động điều chỉnh */
+        gap: 30px;
+        padding-bottom: 30px;
+        /* Khoảng cách với phần copyright */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        /* Đường kẻ phân cách */
+    }
+
+    .footer-col {
+        padding: 0 10px;
+    }
+
+    .footer-logo img {
+        max-width: 150px;
+        height: auto;
+        margin-bottom: 15px;
+    }
+
+    .footer-col p {
+        font-size: 0.95em;
+        line-height: 1.6;
+        color: #ced4da;
+    }
+
+    .footer-col h3 {
+        font-size: 1.2em;
+        color: #fff;
+        margin-bottom: 20px;
+        font-weight: 700;
+        position: relative;
+        padding-bottom: 10px;
+    }
+
+    .footer-col h3::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 50px;
+        /* Độ dài của đường gạch dưới tiêu đề */
+        height: 3px;
+        background-color: #28a745;
+        /* Màu xanh lá cây nổi bật */
+    }
+
+    .footer-col ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .footer-col ul li {
+        margin-bottom: 10px;
+    }
+
+    .footer-col ul li a {
+        color: #ced4da;
+        font-size: 0.95em;
+        transition: color 0.2s ease;
+    }
+
+    .footer-col ul li a:hover {
+        color: #28a745;
+        /* Màu xanh lá cây khi hover */
+    }
+
+    .contact-info-footer p {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 10px;
+    }
+
+    .contact-info-footer p .fas {
+        margin-right: 10px;
+        font-size: 1.1em;
+        color: #28a745;
+        /* Màu icon */
+        margin-top: 2px;
+        /* Căn chỉnh icon với chữ */
+    }
+
+    .social-icons-footer {
+        margin-top: 15px;
+    }
+
+    .social-icons-footer a {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        font-size: 1.2em;
+        margin-right: 10px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .social-icons-footer a:hover {
+        background-color: #28a745;
+        /* Màu xanh lá cây khi hover */
+        color: #fff;
+    }
+
+    .footer-bottom {
+        background-color: #2b3035;
+        /* Màu tối hơn một chút cho phần bản quyền */
+        padding: 20px 0;
+        text-align: center;
+        font-size: 0.9em;
+        color: #adb5bd;
+    }
+
+    /* Responsive adjustments for Footer */
+    @media (max-width: 768px) {
+        .footer-content {
+            grid-template-columns: 1fr;
+            /* Stack columns on smaller screens */
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        .footer-col h3 {
+            text-align: center;
+            padding-bottom: 5px;
+            margin-top: 20px;
+        }
+
+        .footer-col h3::after {
+            left: 50%;
+            transform: translateX(-50%);
+            /* Căn giữa đường gạch dưới */
+        }
+
+        .footer-col ul {
+            margin-bottom: 20px;
+        }
+
+        .contact-info-footer p {
+            justify-content: center;
+        }
+
+        .social-icons-footer {
+            justify-content: center;
+            display: flex;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .main-footer {
+            padding: 30px 0 0;
+        }
+
+        .footer-bottom {
+            padding: 15px 0;
+            font-size: 0.85em;
+        }
+    }
+</style>
+
+<body>
+
+    <header class="top-bar">
+        <div class="container top-bar-content">
+            <div class="contact-info">
+                <span><i class="fas fa-phone"></i> 0977.867.319</span>
+                <span><i class="fas fa-envelope"></i> toeic123.vn@gmail.com</span>
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+            </div>
+            <nav class="top-nav">
+                <a href="#">Học Tiếng Anh</a>
+                <a href="#">Cấu trúc đề thi toeic</a>
+                <a href="#">Chính sách bảo mật</a>
+                <a href="#">Phím English</a>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <div class="container main-nav-content">
+            <div class="nav-links-left">
+                <a href="#" class="nav-item">Trang chủ</a>
+                <a href="#" class="nav-item">Giới thiệu website</a>
+                <a href="#" class="nav-item active">Luyện tập ngay</a>
+            </div>
+            <div class="logo">
+                <img src="images/logo.png" alt="Logo TOEIC 123">
+            </div>
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-register">ĐĂNG KÝ</a>
+                <a href="#" class="btn btn-login">ĐĂNG NHẬP</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1>Luyện Thi TOEIC online hiệu quả !</h1>
+            <ul>
+                <li><i class="fas fa-check-circle"></i> Website luyện thi TOEIC trực tuyến số 1 tại Việt Nam</li>
+                <li><i class="fas fa-check-circle"></i> Hơn 14000+ câu hỏi, 500+ bộ đề luyện thi TOEIC có đáp án</li>
+                <li><i class="fas fa-check-circle"></i> Truy cập ngay với 99.000 VNĐ / 1 năm, luyện thi TOEIC online
+                    thoải mái không giới hạn tài liệu</li>
+            </ul>
+            <button class="btn btn-primary">Đăng ký ngay</button>
+        </div>
+    </section>
+    <section class="main-content-section container">
+        <aside class="sidebar">
+            <div class="level-filter">
+                <div class="filter-header">ALL LEVEL</div>
+                <ul>
+                    <li><a href="#" class="active">Cơ bản</a></li>
+                    <li><a href="#">Trung bình</a></li>
+                    <li><a href="#">Nâng cao</a></li>
+                </ul>
+            </div>
+
+            <div class="ad-card">
+                <img src="/images/banner2.png" alt="FIU Advertisement">
+                <h3>Professional MBA for Executives</h3>
+                <p>MASTER OF SCIENCE IN CURRICULUM & INSTRUCTION</p>
+            </div>
+        </aside>
+
+        <main class="content-area">
+            <div class="content-block grammar-section">
+                <div class="block-header">
+                    <h2>Ngữ pháp tiếng anh</h2>
+                    <a href="#" class="view-all">XEM TẤT CẢ>></a>
+                </div>
+                <div class="lesson-grid">
+                    <div class="lesson-card">
+                        <img src="/images/nguphap1.png" alt="Mệnh đề Quan Hệ">
+                        <h3>Mệnh đề Quan Hệ</h3>
+                        <a href="#" class="btn btn-lesson">HỌC NGAY</a>
+                    </div>
+                    <div class="lesson-card">
+                        <img src="/images/nguphap2.png" alt="Liên từ">
+                        <h3>Liên từ</h3>
+                        <a href="#" class="btn btn-lesson">HỌC NGAY</a>
+                    </div>
+                    <div class="lesson-card">
+                        <img src="/images/nguphap3.png" alt="Giới từ">
+                        <h3>Giới từ</h3>
+                        <a href="#" class="btn btn-lesson">HỌC NGAY</a>
+                    </div>
+                    <div class="lesson-card">
+                        <img src="/images/nguphap4.png" alt="So Sánh">
+                        <h3>Chuyển đề SO SÁNH</h3>
+                        <a href="#" class="btn btn-lesson">HỌC NGAY</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-block vocabulary-section">
+                <div class="block-header">
+                    <h2>Từ vựng tiếng anh</h2>
+                    <a href="#" class="view-all">XEM TẤT CẢ>></a>
+                </div>
+                <div class="lesson-grid">
+                    <div class="lesson-card">
+                        <img src="/images/baithi1.png" alt="Bài 1: CONTRACT">
+                        <h3>BÀI 1 : CONTRACT</h3>
+                        <a href="#" class="btn btn-lesson">HỌC NGAY</a>
+                    </div>
+                    <div class="lesson-card">
+                        <img src="/images/baithi1.png" alt="Bài 2: MARKETING SALES">
+                        <h3>BÀI 2 : MARKETING SALES</h3>
+                        <a href="#" class="btn btn-lesson">HỌC NGAY</a>
+                    </div>
+                    <div class="lesson-card">
+                        <img src="/images/baithi1.png" alt="Bài 3: WARRANTIES">
+                        <h3>BÀI 3 : WARRANTIES</h3>
+                        <a href="#" class="btn btn-lesson">HỌC NGAY</a>
+                    </div>
+                    <div class="lesson-card">
+                        <img src="/images/baithi1.png" alt="Bài 4: BUSINESS PLANNING">
+                        <h3>BÀI 4 : BUSSINESS PLANNING</h3>
+                        <a href="#" class="btn btn-lesson">HỌC NGAY</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <aside class="right-sidebar">
+            <div class="user-info-card">
+                <div class="user-avatar">T</div>
+                <div class="user-details">
+                    <p>Unknown</p>
+                    <p>1/86</p>
+                </div>
+            </div>
+            <div class="members-card">
+                <i class="fas fa-users"></i>
+                <p>Thành viên</p>
+            </div>
+            <div class="promotion-card">
+                <h3>Ưu đãi Hấp dẫn</h3>
+                <img src="/images/banner1.png" alt="Book Promotion">
+            </div>
+        </aside>
+    </section>
+</body>
+<footer class="main-footer">
+    <div class="container footer-content">
+        <div class="footer-col about-us">
+            <div class="footer-logo">
+                <img src="/images/logo.png" alt="TOEIC 123 Logo">
+            </div>
+            <p>TOEIC 123 là nền tảng luyện thi TOEIC trực tuyến hàng đầu Việt Nam, giúp bạn đạt điểm cao dễ dàng với kho
+                tài liệu đồ sộ và phương pháp học hiệu quả.</p>
+        </div>
+
+        <div class="footer-col quick-links">
+            <h3>Liên kết nhanh</h3>
+            <ul>
+                <li><a href="#">Về chúng tôi</a></li>
+                <li><a href="#">Khóa học</a></li>
+                <li><a href="#">Câu hỏi thường gặp (FAQ)</a></li>
+                <li><a href="#">Blog & Tin tức</a></li>
+                <li><a href="#">Chính sách bảo mật</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col contact-info-footer">
+            <h3>Liên hệ</h3>
+            <p><i class="fas fa-map-marker-alt"></i> 123 Đường ABC, Quận XYZ, TP. Hà Nội</p>
+            <p><i class="fas fa-phone"></i> 0977.867.319</p>
+            <p><i class="fas fa-envelope"></i> toeic123.vn@gmail.com</p>
+            <div class="social-icons-footer">
+                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <p>&copy; 2025 TOEIC 123. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+</html>

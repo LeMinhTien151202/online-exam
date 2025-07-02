@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luyện Thi TOEIC Online Hiệu Quả</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<style>
+    /* Thiết lập chung */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif; /* Bạn có thể thay đổi font chữ */
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.btn {
+    padding: 8px 15px;
+    border: 1px solid;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+}
+
+/* --- Top Bar --- */
+.top-bar {
+    background-color: #28a745; /* Màu xanh lá cây */
+    color: #fff;
+    font-size: 13px;
+    padding: 8px 0;
+}
+
+.top-bar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Cho phép xuống dòng trên màn hình nhỏ */
+}
+
+.contact-info span {
+    margin-right: 15px;
+}
+
+.contact-info .social-icon {
+    margin-left: 10px;
+    color: #fff;
+}
+
+.top-nav a {
+    color: #fff;
+    margin-left: 20px;
+    padding: 5px 0;
+}
+
+.top-nav a:hover {
+    text-decoration: underline;
+}
+
+/* --- Main Navigation --- */
+.main-nav {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.main-nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.nav-links-left {
+    display: flex;
+}
+
+.nav-item {
+    padding: 10px 20px;
+    color: #555;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.nav-item.active {
+    background-color: #ffc107; /* Màu vàng cam */
+    border-radius: 5px;
+    color: #333;
+}
+
+.nav-item:not(.active):hover {
+    color: #007bff; /* Màu xanh dương khi hover */
+}
+
+.logo img {
+    height: 30px; /* Điều chỉnh kích thước logo nếu cần */
+}
+
+.auth-buttons .btn {
+    margin-left: 10px;
+}
+
+.btn-register {
+    background-color: #fff;
+    color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-register:hover {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.btn-login {
+    background-color: #28a745;
+    color: #fff;
+    border-color: #28a745;
+}
+
+.btn-login:hover {
+    opacity: 0.9;
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    position: relative;
+    height: 550px; /* Điều chỉnh chiều cao phù hợp */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+    background-image: url('/assets/banner1.png'); /* THAY THẾ BẰNG ĐƯỜNG DẪN ẢNH CỦA BẠN */
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Lớp phủ tối mờ */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+}
+
+.hero-content h1 {
+    font-size: 3em;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.hero-content ul {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+    text-align: left; /* Căn lề trái cho danh sách */
+    display: inline-block; /* Để ul không chiếm hết chiều rộng và căn giữa */
+}
+
+.hero-content ul li {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.hero-content ul li i {
+    color: #28a745; /* Màu xanh checkmark */
+    margin-right: 10px;
+    font-size: 1.3em;
+}
+
+.btn-primary {
+    background-color: transparent;
+    color: #fff;
+    border-color: #fff;
+    padding: 12px 30px;
+    font-size: 1.2em;
+}
+
+.btn-primary:hover {
+    background-color: #fff;
+    color: #333;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .main-nav-content {
+        flex-direction: column;
+    }
+    .nav-links-left {
+        margin-bottom: 10px;
+    }
+    .auth-buttons {
+        margin-top: 10px;
+    }
+    .top-bar-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .contact-info, .top-nav {
+        margin-bottom: 10px;
+    }
+    .top-nav a {
+        margin: 0 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5em;
+    }
+    .hero-content ul {
+        font-size: 1.1em;
+    }
+    .btn-primary {
+        padding: 10px 25px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-content h1 {
+        font-size: 2em;
+    }
+    .hero-content ul li {
+        font-size: 0.95em;
+    }
+    .nav-links-left {
+        flex-direction: column;
+        align-items: center;
+    }
+    .nav-item {
+        margin-bottom: 5px;
+    }
+    .contact-info span {
+        display: block;
+        margin-bottom: 5px;
+    }
+}
+</style>
+<body>
+
+    <header class="top-bar">
+        <div class="container top-bar-content">
+            <div class="contact-info">
+                <span><i class="fas fa-phone"></i> 0977.867.319</span>
+                <span><i class="fas fa-envelope"></i> toeic123.vn@gmail.com</span>
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+            </div>
+            <nav class="top-nav">
+                <a href="#">Học Tiếng Anh</a>
+                <a href="#">Cấu trúc đề thi toeic</a>
+                <a href="#">Chính sách bảo mật</a>
+                <a href="#">Phím English</a>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <div class="container main-nav-content">
+            <div class="nav-links-left">
+                <a href="#" class="nav-item">Trang chủ</a>
+                <a href="#" class="nav-item">Giới thiệu website</a>
+                <a href="#" class="nav-item active">Luyện tập ngay</a>
+            </div>
+            <div class="logo">
+                <img src="https://via.placeholder.com/100x30?text=TOEIC+123" alt="Logo TOEIC 123">
+                </div>
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-register">ĐĂNG KÝ</a>
+                <a href="#" class="btn btn-login">ĐĂNG NHẬP</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1>Luyện Thi TOEIC online hiệu quả !</h1>
+            <ul>
+                <li><i class="fas fa-check-circle"></i> Website luyện thi TOEIC trực tuyến số 1 tại Việt Nam</li>
+                <li><i class="fas fa-check-circle"></i> Hơn 14000+ câu hỏi, 500+ bộ đề luyện thi TOEIC có đáp án</li>
+                <li><i class="fas fa-check-circle"></i> Truy cập ngay với 99.000 VNĐ / 1 năm, luyện thi TOEIC online thoải mái không giới hạn tài liệu</li>
+            </ul>
+            <button class="btn btn-primary">Đăng ký ngay</button>
+        </div>
+    </section>
+
+    </body>
+</html>
