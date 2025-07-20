@@ -1,0 +1,44 @@
+<div class="admin-container">
+  <h2 *ngIf="!examId">Danh sách câu hỏi</h2>
+  <h2 *ngIf="examId">Danh sách câu hỏi của bài thi #{{ examId }}</h2>
+  <div class="admin-actions mb-3" *ngIf="examId">
+    <button class="btn btn-primary">Thêm câu hỏi cho bài thi này</button>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nội dung</th>
+          <!-- <th scope="col">Loại câu hỏi</th> -->
+          <th scope="col">A</th>
+          <th scope="col">B</th>
+          <th scope="col">C</th>
+          <th scope="col">D</th>
+          <th scope="col">Đáp án đúng</th>
+          <th scope="col">Bài thi</th>
+          <th scope="col">Hành động</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="loading"><td colspan="10" class="text-center">Đang tải...</td></tr>
+        <tr *ngIf="error"><td colspan="10" class="text-danger text-center">{{ error }}</td></tr>
+        <tr *ngFor="let question of questions; let i = index">
+          <td>{{ question.question_id }}</td>
+          <td>{{ question.content }}</td>
+          <!-- <td>{{ question.question_type }}</td> -->
+          <td>{{ question.answerA }}</td>
+          <td>{{ question.answerB }}</td>
+          <td>{{ question.answerC }}</td>
+          <td>{{ question.answerD }}</td>
+          <td>{{ question.answerCorrect }}</td>
+          <td>{{ question.exam?.examName || question.examId }}</td>
+          <td>
+            <button class="btn btn-sm btn-warning me-2">Sửa</button>
+            <button class="btn btn-sm btn-danger">Xóa</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

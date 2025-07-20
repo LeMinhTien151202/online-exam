@@ -1,0 +1,35 @@
+<div class="admin-container">
+  <h2>Danh sách người dùng</h2>
+  <div class="admin-actions mb-3">
+    <button class="btn btn-primary">Thêm người dùng</button>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Tên đăng nhập</th>
+          <th scope="col">Email</th>
+          <th scope="col">Số điện thoại</th>
+          <th scope="col">Quyền</th>
+          <th scope="col">Hành động</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="loading"><td colspan="6" class="text-center">Đang tải...</td></tr>
+        <tr *ngIf="error"><td colspan="6" class="text-danger text-center">{{ error }}</td></tr>
+        <tr *ngFor="let user of users; let i = index">
+          <td>{{ user.user_id }}</td>
+          <td>{{ user.userName }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.phone }}</td>
+          <td>{{ user.role?.roleName || user.roleId }}</td>
+          <td>
+            <button class="btn btn-sm btn-warning me-2">Sửa</button>
+            <button class="btn btn-sm btn-danger">Xóa</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

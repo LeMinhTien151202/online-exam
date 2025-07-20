@@ -1,1 +1,39 @@
-<p>header works!</p>
+<header class="top-bar">
+        <div class="container top-bar-content">
+            <div class="contact-info">
+                <span><i class="fas fa-phone"></i> 0977.867.319</span>
+                <span><i class="fas fa-envelope"></i> toeic123.vcom</span>
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+            </div>
+            <nav class="top-nav">
+                <a href="#">Học Tiếng Anh</a>
+                <a href="#">Cấu trúc đề thi toeic</a>
+                <a href="#">Chính sách bảo mật</a>
+                <a href="#">Phím English</a>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <div class="container main-nav-content">
+            <div class="nav-links-left">
+                <a href="#" class="nav-item">Trang chủ</a>
+                <a href="#" class="nav-item">Giới thiệu website</a>
+                <a href="#" class="nav-item active">Luyện tập ngay</a>
+            </div>
+            <div class="logo">
+                <img src="../../../assets/logo.png" alt="Logo TOEIC 123">
+            </div>
+            <div class="auth-buttons">
+                <ng-container *ngIf="!isLoggedIn; else loggedInBlock">
+                  <a routerLink="/register" class="btn btn-register">ĐĂNG KÝ</a>
+                  <a routerLink="/login" class="btn btn-login">ĐĂNG NHẬP</a>
+                </ng-container>
+                <ng-template #loggedInBlock>
+                  <button class="btn btn-logout" (click)="logout()">ĐĂNG XUẤT</button>
+                </ng-template>
+            </div>
+        </div>
+    </nav>

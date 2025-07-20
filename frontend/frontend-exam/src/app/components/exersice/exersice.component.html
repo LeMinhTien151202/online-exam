@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+    <!--font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+</head>
+<body>
+  <app-header></app-header>
+    <div class="container-fluid full-body-spacing"></div>
+    <!-- end top -->
+    <div class="width ">
+        <div class="sidebar-left">
+            <img class="img-reading-left" src="../../../assets/{{examInfo?.pictures}}" alt="" srcset="">
+            <h3 class="title-left">{{ examInfo?.examName }}</h3>
+            <a href="#" class="return-left"><i class="fas fa-chevron-left"></i>
+            Trở lại
+            </a>
+            <div class="mt-4" *ngIf="previousResults.length > 0">
+              <h5>Kết quả đã làm trước đó cho bài thi này</h5>
+              <ul class="list-group">
+                <li class="list-group-item" *ngFor="let result of previousResults">
+                  <div>Điểm: {{ result.score }}</div>
+                  <div>Ngày: {{ result.created_at | date:'yyyy-MM-dd HH:mm' }}</div>
+                </li>
+              </ul>
+            </div>
+        </div>
+    <!-- end sidebar -->
+        <div class="content">
+            <div class="content-box">
+                <div class="body-box">
+                    <div class="img-box"><img src="../../../assets/{{examInfo?.pictures}}" alt="" srcset=""></div>
+                    <div class="info">
+                        <h3>{{ examInfo?.examName }}</h3>
+                        <ng-container *ngIf="showResult">
+                          Bạn đã hoàn thành bài test
+                          <b>Điểm số: {{ score }}/{{ questions.length }}</b>
+                        </ng-container>
+                        <br>
+                        <a class="info-button" href="http://">Về trang chủ</a>
+                    </div>
+                </div>
+                <form *ngIf="questions.length > 0" (ngSubmit)="submitAnswers()">
+                  <div class="question-body" *ngFor="let question of questions; let idx = index">
+                    <div class="question-detail">
+                      <h5>Question {{ idx + 1 }}</h5>
+                      <p>{{ question.content }}</p>
+                      <div class="row-answer">
+                        <input type="radio" [name]="'q' + idx" value="A" [(ngModel)]="userAnswers[idx]" [ngModelOptions]="{standalone: true}"> (A) {{ question.answerA }}
+                      </div>
+                      <div class="row-answer">
+                        <input type="radio" [name]="'q' + idx" value="B" [(ngModel)]="userAnswers[idx]" [ngModelOptions]="{standalone: true}"> (B) {{ question.answerB }}
+                      </div>
+                      <div class="row-answer">
+                        <input type="radio" [name]="'q' + idx" value="C" [(ngModel)]="userAnswers[idx]" [ngModelOptions]="{standalone: true}"> (C) {{ question.answerC }}
+                      </div>
+                      <div class="row-answer">
+                        <input type="radio" [name]="'q' + idx" value="D" [(ngModel)]="userAnswers[idx]" [ngModelOptions]="{standalone: true}"> (D) {{ question.answerD }}
+                      </div>
+                    </div>
+                    <div *ngIf="showResult">
+                      <div *ngIf="userAnswers[idx] === question.answerCorrect; else wrongAns" class="result-box-yes">
+                        <h3><i class="fas fa-check"></i> Xin chúc mừng bạn đã trả lời đúng!</h3>
+                      </div>
+                      <ng-template #wrongAns>
+                        <div class="result-box-no">
+                          <h3><i class="fas fa-times"></i> Rất tiếc bạn đã trả lời sai!</h3>
+                          <h3>Đáp án đúng là đáp án {{ question.answerCorrect }}.</h3>
+                        </div>
+                      </ng-template>
+                    </div>
+                  </div>
+                  <div class="text-center my-4">
+                    <button type="submit" class="btn btn-success">Gửi bài</button>
+                  </div>
+                </form>
+                <div *ngIf="!loading && questions.length === 0" class="text-center text-danger">Không có câu hỏi cho bài thi này.</div>
+                <div *ngIf="loading" class="text-center">Đang tải câu hỏi...</div>
+            </div>
+
+        </div>
+        <div class="sidebar-right">
+            <div class="sidebar-userinfo">
+                <div class="row-1">
+                    <div class="col-1">
+                        <div class="img-user">
+                            <img src="../../../assets/user.png" alt="" srcset="" width="55" height="55">
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <span class="username">Tien Le</span>
+                        <span class="score">1/86</span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="sidebar-member">
+                <div class="sidebar-member-number">87693</div>
+            </div>
+            <div class="sidebar-right-banner">
+                <img src="../../../assets/banner2.png" alt="" srcset="" width="226">
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

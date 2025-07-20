@@ -6,5 +6,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+  isLoggedIn = false;
 
+  ngOnInit() {
+    this.checkLogin();
+  }
+
+  checkLogin() {
+    this.isLoggedIn = !!localStorage.getItem('currentUser');
+  }
+
+  logout() {
+    localStorage.removeItem('currentUser');
+    this.isLoggedIn = false;
+    window.location.reload();
+  }
 }

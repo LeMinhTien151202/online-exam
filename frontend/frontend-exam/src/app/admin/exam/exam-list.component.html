@@ -1,0 +1,41 @@
+<div class="admin-container">
+  <h2>Danh sách bài thi</h2>
+  <div class="admin-actions mb-3">
+    <button class="btn btn-primary">Thêm bài thi</button>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Tên bài thi</th>
+          <th scope="col">Danh mục</th>
+          <th scope="col">Cấp độ</th>
+          <th scope="col">Ngày tạo</th>
+          <th scope="col">Ngày sửa</th>
+          <th scope="col">Xem câu hỏi</th>
+          <th scope="col">Hành động</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="loading"><td colspan="7" class="text-center">Đang tải...</td></tr>
+        <tr *ngIf="error"><td colspan="7" class="text-danger text-center">{{ error }}</td></tr>
+        <tr *ngFor="let exam of exams; let i = index">
+          <td>{{ exam.examId }}</td>
+          <td>{{ exam.examName }}</td>
+          <td>{{ exam.category?.categoryName || exam.categoryId }}</td>
+          <td>{{ exam.level?.levelName || exam.levelId }}</td>
+          <td>{{ exam.createdAt | date:'short' }}</td>
+          <td>{{ exam.createdUp }}</td>
+          <td>
+            <button class="btn btn-info btn-sm" [routerLink]="['../exam', exam.examId, 'questions']">Xem câu hỏi</button>
+          </td>
+          <td>
+            <button class="btn btn-sm btn-warning me-2">Sửa</button>
+            <button class="btn btn-sm btn-danger">Xóa</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
