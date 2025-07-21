@@ -26,7 +26,7 @@
           <td>{{ exam.category?.categoryName || exam.categoryId }}</td>
           <td>{{ exam.level?.levelName || exam.levelId }}</td>
           <td>{{ exam.createdAt | date:'short' }}</td>
-          <td>{{ exam.createdUp }}</td>
+          <td>{{ exam.createdUp | date:'short' }}</td>
           <td>
             <button class="btn btn-info btn-sm" [routerLink]="['../exam', exam.examId, 'questions']">Xem câu hỏi</button>
           </td>

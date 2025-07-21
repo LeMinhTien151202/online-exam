@@ -24,7 +24,7 @@
         <tr *ngIf="loading"><td colspan="10" class="text-center">Đang tải...</td></tr>
         <tr *ngIf="error"><td colspan="10" class="text-danger text-center">{{ error }}</td></tr>
         <tr *ngFor="let question of questions; let i = index">
-          <td>{{ question.question_id }}</td>
+          <td>{{ question.questionId }}</td>
           <td>{{ question.content }}</td>
           <!-- <td>{{ question.question_type }}</td> -->
           <td>{{ question.answerA }}</td>

@@ -19,7 +19,7 @@
         <tr *ngIf="loading"><td colspan="6" class="text-center">Đang tải...</td></tr>
         <tr *ngIf="error"><td colspan="6" class="text-danger text-center">{{ error }}</td></tr>
         <tr *ngFor="let user of users; let i = index">
-          <td>{{ user.user_id }}</td>
+          <td>{{ user.userId }}</td>
           <td>{{ user.userName }}</td>
           <td>{{ user.email }}</td>
           <td>{{ user.phone }}</td>
