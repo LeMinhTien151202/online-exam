@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Exam {
+public class Exam extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer examId;
@@ -31,12 +31,6 @@ public class Exam {
     private String examName;
 
     private String pictures;
-
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
-
-    @Column(name = "created_up")
-    private LocalDateTime createdUp;
 
 //    @OneToMany(mappedBy = "exam")
 //    private List<Question> questions;

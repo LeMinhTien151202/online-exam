@@ -1,7 +1,7 @@
 <div class="admin-container">
   <h2>Danh sách câu hỏi của bài thi #{{ examId }}</h2>
   <div class="admin-actions mb-3">
-    <button class="btn btn-primary">Thêm câu hỏi cho bài thi này</button>
+    <button class="btn btn-primary" (click)="openAddQuestionModal()">Thêm câu hỏi cho bài thi này</button>
   </div>
   <div class="table-responsive">
     <table class="table table-bordered table-hover align-middle">
@@ -29,11 +29,97 @@
           <td>{{ question.answerD }}</td>
           <td>{{ question.answerCorrect }}</td>
           <td>
-            <button class="btn btn-sm btn-warning me-2">Sửa</button>
-            <button class="btn btn-sm btn-danger">Xóa</button>
+            <button class="btn btn-sm btn-warning me-2" (click)="openEditQuestionModal(question)">Sửa</button>
+            <button class="btn btn-sm btn-danger" (click)="deleteQuestion(question.questionId)">Xóa</button>
           </td>
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <!-- Modal thêm câu hỏi -->
+  <div class="modal" tabindex="-1" [ngClass]="{ 'show d-block': showAddQuestionModal }" *ngIf="showAddQuestionModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form (ngSubmit)="addQuestion()" #addQuestionForm="ngForm">
+          <div class="modal-header">
+            <h5 class="modal-title">Thêm câu hỏi mới</h5>
+            <button type="button" class="btn-close" (click)="closeAddQuestionModal()"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3"><label>Nội dung</label>
+              <textarea class="form-control" [(ngModel)]="newQuestion.content" name="content" required></textarea>
+            </div>
+            <div class="mb-3"><label>Đáp án A</label>
+              <input type="text" class="form-control" [(ngModel)]="newQuestion.answerA" name="answerA" required>
+            </div>
+            <div class="mb-3"><label>Đáp án B</label>
+              <input type="text" class="form-control" [(ngModel)]="newQuestion.answerB" name="answerB" required>
+            </div>
+            <div class="mb-3"><label>Đáp án C</label>
+              <input type="text" class="form-control" [(ngModel)]="newQuestion.answerC" name="answerC" required>
+            </div>
+            <div class="mb-3"><label>Đáp án D</label>
+              <input type="text" class="form-control" [(ngModel)]="newQuestion.answerD" name="answerD" required>
+            </div>
+            <div class="mb-3"><label>Đáp án đúng</label>
+              <select class="form-control" [(ngModel)]="newQuestion.answerCorrect" name="answerCorrect" required>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success" [disabled]="addQuestionForm.invalid">Thêm</button>
+            <button type="button" class="btn btn-secondary" (click)="closeAddQuestionModal()">Hủy</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal sửa câu hỏi -->
+  <div class="modal" tabindex="-1" [ngClass]="{ 'show d-block': showEditQuestionModal }" *ngIf="showEditQuestionModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form (ngSubmit)="updateQuestion()" #editQuestionForm="ngForm">
+          <div class="modal-header">
+            <h5 class="modal-title">Sửa câu hỏi</h5>
+            <button type="button" class="btn-close" (click)="closeEditQuestionModal()"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3"><label>Nội dung</label>
+              <textarea class="form-control" [(ngModel)]="editQuestion.content" name="editContent" required></textarea>
+            </div>
+            <div class="mb-3"><label>Đáp án A</label>
+              <input type="text" class="form-control" [(ngModel)]="editQuestion.answerA" name="editAnswerA" required>
+            </div>
+            <div class="mb-3"><label>Đáp án B</label>
+              <input type="text" class="form-control" [(ngModel)]="editQuestion.answerB" name="editAnswerB" required>
+            </div>
+            <div class="mb-3"><label>Đáp án C</label>
+              <input type="text" class="form-control" [(ngModel)]="editQuestion.answerC" name="editAnswerC" required>
+            </div>
+            <div class="mb-3"><label>Đáp án D</label>
+              <input type="text" class="form-control" [(ngModel)]="editQuestion.answerD" name="editAnswerD" required>
+            </div>
+            <div class="mb-3"><label>Đáp án đúng</label>
+              <select class="form-control" [(ngModel)]="editQuestion.answerCorrect" name="editAnswerCorrect" required>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success" [disabled]="editQuestionForm.invalid">Lưu</button>
+            <button type="button" class="btn btn-secondary" (click)="closeEditQuestionModal()">Hủy</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </div>

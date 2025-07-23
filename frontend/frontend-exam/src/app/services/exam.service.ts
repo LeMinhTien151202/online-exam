@@ -21,8 +21,15 @@ export class ExamService {
     return this.http.post<ExamDto>(this.apiUrl, exam);
   }
 
+  createWithImage(formData: FormData): Observable<any> {
+    return this.http.post<any>(this.apiUrl, formData);
+  }
+
   update(id: number, exam: ExamDto): Observable<ExamDto> {
     return this.http.put<ExamDto>(`${this.apiUrl}/${id}`, exam);
+  }
+  updateWithImage(id: number, formData: FormData) {
+  return this.http.put(`${this.apiUrl}/${id}`, formData);
   }
 
   delete(id: number): Observable<void> {

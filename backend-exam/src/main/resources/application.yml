@@ -16,3 +16,6 @@ spring:
       format_sql: true
   jackson:
     time-zone: Asia/Ho_Chi_Minh
+# Thư mục lưu trữ file ảnh
+app:
+  upload-dir: uploads/

@@ -1,4 +1,4 @@
 export interface LevelDto {
-  level_id: number;
+  levelId: number;
   levelName: string;
 }

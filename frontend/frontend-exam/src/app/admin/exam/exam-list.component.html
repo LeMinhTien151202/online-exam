@@ -1,13 +1,14 @@
 <div class="admin-container">
   <h2>Danh sách bài thi</h2>
   <div class="admin-actions mb-3">
-    <button class="btn btn-primary">Thêm bài thi</button>
+    <button class="btn btn-primary" (click)="openAddExamModal()">Thêm bài thi</button>
   </div>
   <div class="table-responsive">
     <table class="table table-bordered table-hover align-middle">
       <thead class="table-dark">
         <tr>
           <th scope="col">ID</th>
+          <th scope="col">Ảnh</th>
           <th scope="col">Tên bài thi</th>
           <th scope="col">Danh mục</th>
           <th scope="col">Cấp độ</th>
@@ -18,10 +19,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngIf="loading"><td colspan="7" class="text-center">Đang tải...</td></tr>
-        <tr *ngIf="error"><td colspan="7" class="text-danger text-center">{{ error }}</td></tr>
+        <tr *ngIf="loading"><td colspan="9" class="text-center">Đang tải...</td></tr>
+        <tr *ngIf="error"><td colspan="9" class="text-danger text-center">{{ error }}</td></tr>
         <tr *ngFor="let exam of exams; let i = index">
           <td>{{ exam.examId }}</td>
+          <td>
+            <img *ngIf="exam.pictures" [src]="'../../../assets/' + exam.pictures" alt="Ảnh bài thi" style="width:60px; height:40px; object-fit:cover; border-radius:4px;">
+          </td>
           <td>{{ exam.examName }}</td>
           <td>{{ exam.category?.categoryName || exam.categoryId }}</td>
           <td>{{ exam.level?.levelName || exam.levelId }}</td>
@@ -31,11 +35,53 @@
             <button class="btn btn-info btn-sm" [routerLink]="['../exam', exam.examId, 'questions']">Xem câu hỏi</button>
           </td>
           <td>
-            <button class="btn btn-sm btn-warning me-2">Sửa</button>
+            <button class="btn btn-sm btn-warning me-2" [routerLink]="['/admin/exam/edit', exam.examId]">Sửa</button>
             <button class="btn btn-sm btn-danger">Xóa</button>
           </td>
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <!-- Modal thêm bài thi -->
+  <div class="modal" tabindex="-1" [ngClass]="{ 'show d-block': showAddExamModal }" *ngIf="showAddExamModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form (ngSubmit)="addExam()" #addExamForm="ngForm" enctype="multipart/form-data">
+          <div class="modal-header">
+            <h5 class="modal-title">Thêm bài thi mới</h5>
+            <button type="button" class="btn-close" (click)="closeAddExamModal()"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label>Tên bài thi</label>
+              <input type="text" class="form-control" [(ngModel)]="newExam.examName" name="examName" required>
+            </div>
+            <div class="mb-3">
+              <label>Danh mục</label>
+              <select class="form-control" [(ngModel)]="newExam.categoryId" name="categoryId" required>
+                <option value="" disabled selected>Chọn danh mục</option>
+                <option *ngFor="let cat of categories" [value]="cat.categoryId">{{ cat.categoryName }}</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label>Cấp độ</label>
+              <select class="form-control" [(ngModel)]="newExam.levelId" name="levelId" required>
+                <option value="" disabled selected>Chọn cấp độ</option>
+                <option *ngFor="let lvl of levels" [value]="lvl.levelId">{{ lvl.levelName }}</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label>Ảnh bài thi</label>
+              <input type="file" class="form-control" (change)="onFileSelected($event)">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success" [disabled]="addExamForm.invalid">Thêm</button>
+            <button type="button" class="btn btn-secondary" (click)="closeAddExamModal()">Hủy</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
