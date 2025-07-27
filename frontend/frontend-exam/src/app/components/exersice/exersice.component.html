@@ -15,102 +15,116 @@
 </head>
 <body>
   <app-header></app-header>
-    <div class="container-fluid full-body-spacing"></div>
-    <!-- end top -->
-    <div class="width ">
-        <div class="sidebar-left">
-            <img class="img-reading-left" src="../../../assets/{{examInfo?.pictures}}" alt="" srcset="">
-            <h3 class="title-left">{{ examInfo?.examName }}</h3>
-            <a href="#" class="return-left"><i class="fas fa-chevron-left"></i>
-            Trở lại
-            </a>
-            <div class="mt-4" *ngIf="previousResults.length > 0">
-              <h5>Kết quả đã làm trước đó cho bài thi này</h5>
-              <ul class="list-group">
-                <li class="list-group-item" *ngFor="let result of previousResults">
-                  <div>Điểm: {{ result.score }}</div>
-                  <div>Ngày: {{ result.created_at | date:'yyyy-MM-dd HH:mm' }}</div>
-                </li>
-              </ul>
-            </div>
+  <div class="exersice-container">
+    <div class="exersice-grid-3col">
+      <!-- Cột trái: thông tin bài thi và banner xanh -->
+      <aside class="exersice-sidebar">
+        <div class="exam-info">
+          <img class="exam-img" [src]="'../../../assets/' + examInfo?.pictures" alt="Ảnh bài thi" />
+          <div class="exam-title">{{ examInfo?.examName }}</div>
+          <a routerLink="/exam-list" class="return-link">
+            <i class="fas fa-chevron-left"></i> Trở lại
+          </a>
         </div>
-    <!-- end sidebar -->
-        <div class="content">
-            <div class="content-box">
-                <div class="body-box">
-                    <div class="img-box"><img src="../../../assets/{{examInfo?.pictures}}" alt="" srcset=""></div>
-                    <div class="info">
-                        <h3>{{ examInfo?.examName }}</h3>
-                        <ng-container *ngIf="showResult">
-                          Bạn đã hoàn thành bài test
-                          <b>Điểm số: {{ score }}/{{ questions.length }}</b>
-                        </ng-container>
-                        <br>
-                        <a class="info-button" href="http://">Về trang chủ</a>
-                    </div>
-                </div>
-                <form *ngIf="questions.length > 0" (ngSubmit)="submitAnswers()">
-                  <div class="question-body" *ngFor="let question of questions; let idx = index">
-                    <div class="question-detail">
-                      <h5>Question {{ idx + 1 }}</h5>
-                      <p>{{ question.content }}</p>
-                      <div class="row-answer">
-                        <input type="radio" [name]="'q' + idx" value="A" [(ngModel)]="userAnswers[idx]" [ngModelOptions]="{standalone: true}"> (A) {{ question.answerA }}
-                      </div>
-                      <div class="row-answer">
-                        <input type="radio" [name]="'q' + idx" value="B" [(ngModel)]="userAnswers[idx]" [ngModelOptions]="{standalone: true}"> (B) {{ question.answerB }}
-                      </div>
-                      <div class="row-answer">
-                        <input type="radio" [name]="'q' + idx" value="C" [(ngModel)]="userAnswers[idx]" [ngModelOptions]="{standalone: true}"> (C) {{ question.answerC }}
-                      </div>
-                      <div class="row-answer">
-                        <input type="radio" [name]="'q' + idx" value="D" [(ngModel)]="userAnswers[idx]" [ngModelOptions]="{standalone: true}"> (D) {{ question.answerD }}
-                      </div>
-                    </div>
-                    <div *ngIf="showResult">
-                      <div *ngIf="userAnswers[idx] === question.answerCorrect; else wrongAns" class="result-box-yes">
-                        <h3><i class="fas fa-check"></i> Xin chúc mừng bạn đã trả lời đúng!</h3>
-                      </div>
-                      <ng-template #wrongAns>
-                        <div class="result-box-no">
-                          <h3><i class="fas fa-times"></i> Rất tiếc bạn đã trả lời sai!</h3>
-                          <h3>Đáp án đúng là đáp án {{ question.answerCorrect }}.</h3>
-                        </div>
-                      </ng-template>
-                    </div>
-                  </div>
-                  <div class="text-center my-4">
-                    <button type="submit" class="btn btn-success">Gửi bài</button>
-                  </div>
-                </form>
-                <div *ngIf="!loading && questions.length === 0" class="text-center text-danger">Không có câu hỏi cho bài thi này.</div>
-                <div *ngIf="loading" class="text-center">Đang tải câu hỏi...</div>
-            </div>
+        <div *ngIf="previousResults.length > 0" class="previous-results">
+          <h5>Kết quả đã làm trước đó cho bài thi này</h5>
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let result of previousResults">
+              <div>Điểm: {{ result.score }}</div>
+              <div>Ngày: {{ result.created_at | date:'yyyy-MM-dd HH:mm' }}</div>
+            </li>
+          </ul>
+        </div>
+        <!-- Banner xanh bên trái -->
+        <!-- <div class="banner-green">
+          <img src="../../../assets/3.png" alt="Banner xanh" />
+          <h4>Học TOEIC hiệu quả</h4>
+          <p>Tham gia ngay để nhận tài liệu và ưu đãi đặc biệt!</p>
+        </div> -->
+        <!-- Banner bên trái mới -->
+        <div class="ad-card">
+          <img src="../../../assets/banner4.png" alt="Professional MBA for Executives" />
+          <h4>Professional MBA for Executives</h4>
+          <p>MASTER OF SCIENCE IN CURRICULUM & INSTRUCTION</p>
+        </div>
+      </aside>
 
+      <!-- Cột giữa: các câu hỏi -->
+      <main class="exersice-main">
+        <div class="exam-main-info">
+          <img class="exam-img-main" [src]="'../../../assets/' + examInfo?.pictures" alt="Ảnh bài thi" />
+          <div class="exam-details">
+            <div class="exam-title">{{ examInfo?.examName }}</div>
+            <ng-container *ngIf="showResult">
+              <div class="score-box">
+                Bạn đã hoàn thành bài test <b>{{ examInfo?.examName }}</b>
+                Với điểm số {{ score }}/{{ questions.length }}
+              </div>
+              <a class="info-button" routerLink="/">VỀ TRANG CHỦ</a>
+            </ng-container>
+          </div>
         </div>
-        <div class="sidebar-right">
-            <div class="sidebar-userinfo">
-                <div class="row-1">
-                    <div class="col-1">
-                        <div class="img-user">
-                            <img src="../../../assets/user.png" alt="" srcset="" width="55" height="55">
-                        </div>
-                    </div>
-                    <div class="col-2">
-                        <span class="username">Tien Le</span>
-                        <span class="score">1/86</span>
-                    </div>
-                </div>
 
-            </div>
-            <div class="sidebar-member">
-                <div class="sidebar-member-number">87693</div>
-            </div>
-            <div class="sidebar-right-banner">
-                <img src="../../../assets/banner2.png" alt="" srcset="" width="226">
-            </div>
+        <!-- Thêm mô tả bài test ở đây -->
+        <div class="exam-description">
+          <h4 class="desc-title">PREPOSITION TEST</h4>
+          <p>
+            In the reading test, you will read a variety of texts and answer several different types of reading comprehension questions. The entire Reading Test will last 75 minutes. There are three parts, and directions are given for each part. You are encouraged to answer as many questions as possible within the time allowed.
+          </p>
         </div>
+
+        <form *ngIf="questions.length > 0" (ngSubmit)="submitAnswers()" class="questions-form">
+          <div class="question-body" *ngFor="let question of questions; let idx = index">
+            <div class="question-detail">
+              <h5>QUESTION {{ idx + 1 }}</h5>
+              <p>{{ question.content }}</p>
+              <div class="row-answer">
+                <input type="radio" [name]="'q' + idx" value="A" [(ngModel)]="userAnswers[idx]" [ngModelOptions]="{standalone: true}"> (A) {{ question.answerA }}
+              </div>
+              <div class="row-answer">
+                <input type="radio" [name]="'q' + idx" value="B" [(ngModel)]="userAnswers[idx]" [ngModelOptions]="{standalone: true}"> (B) {{ question.answerB }}
+              </div>
+              <div class="row-answer">
+                <input type="radio" [name]="'q' + idx" value="C" [(ngModel)]="userAnswers[idx]" [ngModelOptions]="{standalone: true}"> (C) {{ question.answerC }}
+              </div>
+              <div class="row-answer">
+                <input type="radio" [name]="'q' + idx" value="D" [(ngModel)]="userAnswers[idx]" [ngModelOptions]="{standalone: true}"> (D) {{ question.answerD }}
+              </div>
+            </div>
+            <div *ngIf="showResult">
+              <div *ngIf="userAnswers[idx] === question.answerCorrect; else wrongAns" class="result-box-yes">
+                <h3><i class="fas fa-check"></i> Xin chúc mừng bạn đã trả lời đúng!</h3>
+              </div>
+              <ng-template #wrongAns>
+                <div class="result-box-no">
+                  <h3><i class="fas fa-times"></i> Rất tiếc bạn đã trả lời sai!</h3>
+                </div>
+              </ng-template>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-success mt-3" *ngIf="!showResult">Nộp bài</button>
+        </form>
+      </main>
+
+      <!-- Cột phải: giống trang home -->
+      <aside class="exersice-rightbar">
+        <div class="userinfo-card">
+          <div class="userinfo-avatar">
+            <span class="userinfo-avatar-circle">T</span>
+          </div>
+          <div class="userinfo-name">Unknown</div>
+          <div class="userinfo-score">1/86</div>
+        </div>
+        <div class="member-card">
+          <i class="fas fa-users member-icon"></i>
+          <div class="member-title">Thành viên</div>
+        </div>
+        <div class="banner-card">
+          <h4 class="banner-title-red">Ưu đãi Hấp dẫn</h4>
+          <img src="../../../assets/banner2.png" alt="Ưu đãi hấp dẫn" />
+        </div>
+      </aside>
     </div>
-
+  </div>
 </body>
 </html>

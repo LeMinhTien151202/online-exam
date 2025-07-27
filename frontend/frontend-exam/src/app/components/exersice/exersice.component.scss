@@ -269,6 +269,10 @@
   .main-content-section, .width {
     grid-template-columns: 220px 1fr 250px;
   }
+  .exersice-grid-3col {
+    grid-template-columns: 220px 1fr 220px;
+    gap: 20px;
+  }
 }
 
 @media (max-width: 992px) {
@@ -279,6 +283,14 @@
   .sidebar-left, .sidebar, .sidebar-right {
     width: 100%;
     margin-bottom: 20px;
+  }
+  .exersice-grid-3col {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .exersice-sidebar,
+  .exersice-rightbar {
+    margin-bottom: 24px;
   }
 }
  .img-reading-left{
@@ -387,3 +399,327 @@
             color: #fff;
             background-color: #dd4b39;
         }
+        .exersice-container {
+  width: 100%;
+  padding-left: 40px;
+  padding-right: 40px;
+  box-sizing: border-box;
+  margin-top: 30px;
+}
+
+.exersice-grid {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 32px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.exersice-grid-3col {
+  display: grid;
+  grid-template-columns: 260px 1fr 300px;
+  gap: 32px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+@media (max-width: 1200px) {
+  .exersice-grid-3col {
+    grid-template-columns: 220px 1fr 220px;
+    gap: 20px;
+  }
+}
+@media (max-width: 992px) {
+  .exersice-grid-3col {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .exersice-sidebar,
+  .exersice-rightbar {
+    margin-bottom: 24px;
+  }
+}
+
+.exersice-sidebar,
+.exersice-rightbar {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  padding: 18px 14px;
+  min-width: 0;
+}
+
+.banner-green {
+  background: #056838;
+  color: #fff;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 18px;
+  padding: 16px 10px;
+}
+.banner-green img {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+.banner-green h4 {
+  font-size: 1.08em;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+.banner-green p {
+  font-size: 0.97em;
+  margin-bottom: 0;
+}
+
+.exam-info {
+  text-align: center;
+  margin-bottom: 18px;
+}
+.exam-img {
+  width: 100%;
+  max-width: 220px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #eee;
+}
+.exam-title {
+  font-size: 1.15em;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #28a745;
+}
+.return-link {
+  display: inline-block;
+  margin-top: 8px;
+  color: #007bff;
+  font-weight: 500;
+  text-decoration: none;
+}
+.return-link:hover {
+  text-decoration: underline;
+}
+
+.previous-results {
+  margin-top: 18px;
+}
+.previous-results h5 {
+  font-size: 1em;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.exersice-main {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  padding: 28px 22px;
+  min-width: 0;
+  position: relative;
+}
+
+.exam-main-info {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 18px;
+}
+.exam-img-main {
+  width: 100px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+.exam-details .exam-title {
+  font-size: 1.25em;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #28a745;
+}
+.score-box {
+  margin-bottom: 8px;
+  font-size: 1.05em;
+  color: #dc3545;
+}
+.info-button {
+  display: inline-block;
+  margin-top: 8px;
+  background: #28a745;
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.info-button:hover {
+  background: #218838;
+}
+
+.questions-form {
+  margin-top: 18px;
+}
+.question-body {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+}
+.question-detail h5 {
+  color: #DE4E54;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  font-size: 1em;
+}
+.question-detail p {
+  font-size: 1em;
+  margin-bottom: 8px;
+}
+.row-answer {
+  margin-bottom: 6px;
+}
+.result-box-yes {
+  background: #e6f9ea;
+  border-radius: 6px;
+  padding: 8px;
+  color: #28a745;
+  margin-top: 8px;
+}
+.result-box-no {
+  background: #fdeaea;
+  border-radius: 6px;
+  padding: 8px;
+  color: #dc3545;
+  margin-top: 8px;
+}
+.btn-success {
+  background: #28a745;
+  border: none;
+  padding: 8px 22px;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 1em;
+  transition: background 0.2s;
+}
+.btn-success:hover {
+  background: #218838;
+}
+
+/* Cột phải giống trang home */
+.userinfo-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+  padding: 18px 10px;
+  text-align: center;
+  margin-bottom: 18px;
+}
+.userinfo-avatar {
+  margin-bottom: 8px;
+}
+.userinfo-avatar-circle {
+  display: inline-block;
+  background: #007bff;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.5em;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  line-height: 48px;
+  text-align: center;
+}
+.userinfo-name {
+  font-size: 1.1em;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.userinfo-score {
+  color: #757575;
+  font-size: 0.98em;
+}
+
+.member-card {
+  background: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+  padding: 16px 10px;
+  text-align: center;
+  margin-bottom: 18px;
+}
+.member-icon {
+  font-size: 2em;
+  color: #28a745;
+  margin-bottom: 8px;
+}
+.member-title {
+  font-size: 1.08em;
+  color: #28a745;
+  font-weight: 600;
+}
+
+.banner-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+  padding: 16px 10px;
+  text-align: center;
+  margin-top: 18px;
+}
+.banner-title-red {
+  color: #DE4E54;
+  font-size: 1.08em;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.banner-card img {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.ad-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+  padding: 16px 10px;
+  text-align: center;
+  margin-top: 18px;
+}
+.ad-card img {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+.ad-card h4 {
+  font-size: 1.08em;
+  color: #222;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+.ad-card p {
+  font-size: 0.97em;
+  color: #5a7bb0;
+  margin-bottom: 0;
+  text-transform: uppercase;
+}
+.exam-description {
+  margin-bottom: 18px;
+}
+.desc-title {
+  color: #DE4E54;
+  font-size: 1.1em;
+  font-weight: 600;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
