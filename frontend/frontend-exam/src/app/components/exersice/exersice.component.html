@@ -52,7 +52,7 @@
       <!-- Cột giữa: các câu hỏi -->
       <main class="exersice-main">
         <div class="exam-main-info">
-          <img class="exam-img-main" [src]="'../../../assets/' + examInfo?.pictures" alt="Ảnh bài thi" />
+          <img class="exam-img-main" [src]="'http://localhost:8088' + examInfo?.pictures" alt="Ảnh bài thi" />
           <div class="exam-details">
             <div class="exam-title">{{ examInfo?.examName }}</div>
             <ng-container *ngIf="showResult">

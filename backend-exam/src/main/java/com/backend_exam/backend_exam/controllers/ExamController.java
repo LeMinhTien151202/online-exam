@@ -28,8 +28,13 @@ public class ExamController {
     }
 
     @GetMapping
-    public List<Exam> getAll() {
-        return examService.getAllExam();
+    public ResponseEntity<?> getAll() {
+        try {
+
+            return ResponseEntity.ok(examService.getAllExam());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @GetMapping("/{id}")

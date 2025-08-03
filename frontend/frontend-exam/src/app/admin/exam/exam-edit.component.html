@@ -22,7 +22,7 @@
       <label>Ảnh bài thi (chọn mới nếu muốn thay đổi)</label>
       <input type="file" class="form-control" (change)="onFileSelected($event)">
       <div *ngIf="exam.pictures">
-        <img [src]="'../../../assets/' + exam.pictures" alt="Ảnh hiện tại" style="width:60px; margin-top:8px;">
+        <img [src]="'http://localhost:8088' + exam.pictures" alt="Ảnh hiện tại" style="width:60px; margin-top:8px;">
       </div>
     </div>
     <div class="form-actions">

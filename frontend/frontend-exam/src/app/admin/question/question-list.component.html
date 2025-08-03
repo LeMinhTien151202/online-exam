@@ -21,8 +21,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngIf="loading"><td colspan="10" class="text-center">Đang tải...</td></tr>
-        <tr *ngIf="error"><td colspan="10" class="text-danger text-center">{{ error }}</td></tr>
+        <tr *ngIf="questions.length === 0"><td colspan="10" class="text-center">Không có dữ liệu</td></tr>
         <tr *ngFor="let question of questions; let i = index">
           <td>{{ question.questionId }}</td>
           <td>{{ question.content }}</td>

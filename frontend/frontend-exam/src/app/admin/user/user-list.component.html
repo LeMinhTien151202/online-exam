@@ -1,5 +1,18 @@
 <div class="admin-container">
   <h2>Danh sách người dùng</h2>
+
+  <!-- Thông báo thành công -->
+  <div *ngIf="success" class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ success }}
+    <button type="button" class="btn-close" (click)="success = ''"></button>
+  </div>
+
+  <!-- Thông báo lỗi -->
+  <div *ngIf="error" class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{ error }}
+    <button type="button" class="btn-close" (click)="error = ''"></button>
+  </div>
+
   <div class="admin-actions mb-3">
     <button class="btn btn-primary">Thêm người dùng</button>
   </div>
@@ -11,22 +24,51 @@
           <th scope="col">Tên đăng nhập</th>
           <th scope="col">Email</th>
           <th scope="col">Số điện thoại</th>
-          <th scope="col">Quyền</th>
-          <th scope="col">Hành động</th>
+          <th scope="col">Quyền hiện tại</th>
+          <th scope="col">Quản lý quyền</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngIf="loading"><td colspan="6" class="text-center">Đang tải...</td></tr>
-        <tr *ngIf="error"><td colspan="6" class="text-danger text-center">{{ error }}</td></tr>
         <tr *ngFor="let user of users; let i = index">
-          <td>{{ user.userId }}</td>
+          <td>{{ i + 1 }}</td>
           <td>{{ user.userName }}</td>
           <td>{{ user.email }}</td>
           <td>{{ user.phone }}</td>
-          <td>{{ user.role?.roleName || user.roleId }}</td>
           <td>
-            <button class="btn btn-sm btn-warning me-2">Sửa</button>
-            <button class="btn btn-sm btn-danger">Xóa</button>
+            <span [class]="'badge ' + getRoleBadgeClass(user)">
+              {{ getRoleName(user) }}
+            </span>
+          </td>
+          <td>
+            <!-- Trường hợp 1: User thường - hiển thị nút Admin và Khóa -->
+            <div *ngIf="isRegularUser(user)">
+              <button class="btn btn-sm btn-primary me-1 mb-1" (click)="makeAdmin(user)">
+              Admin
+              </button>
+              <button class="btn btn-sm btn-danger me-1 mb-1" (click)="lockUser(user)">
+                <i class="fas fa-lock"></i> Khóa
+              </button>
+            </div>
+
+            <!-- Trường hợp 2: Admin - hiển thị nút User và Khóa -->
+            <div *ngIf="isAdmin(user)">
+              <button class="btn btn-sm btn-warning me-1 mb-1" (click)="makeUser(user)">
+                <i class="fas fa-user"></i> User
+              </button>
+              <button class="btn btn-sm btn-danger me-1 mb-1" (click)="lockUser(user)">
+                <i class="fas fa-lock"></i> Khóa
+              </button>
+            </div>
+
+            <!-- Trường hợp 3: Tài khoản bị khóa - chỉ hiển thị nút Mở khóa -->
+            <div *ngIf="isLocked(user)">
+              <button class="btn btn-sm btn-warning me-1 mb-1" (click)="makeUser(user)">
+                <i class="fas fa-user"></i> User
+              </button>
+              <button class="btn btn-sm btn-primary me-1 mb-1" (click)="makeAdmin(user)">
+              Admin
+              </button>
+            </div>
           </td>
         </tr>
       </tbody>

@@ -29,9 +29,11 @@ export class ExamEditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    debugger
     this.examId = +this.route.snapshot.paramMap.get('id')!;
     this.examService.getById(this.examId).subscribe({
       next: (data) => {
+        debugger
         this.exam = data; // <-- Gán dữ liệu cũ vào biến exam
       },
       error: () => {

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserDto } from '../dtos/user.dto';
+import { UserRegisterDto } from '../dtos/uer.register.dto';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -17,7 +18,7 @@ export class UserService {
     return this.http.get<UserDto>(`${this.apiUrl}/${id}`);
   }
 
-  create(user: UserDto): Observable<UserDto> {
+  create(user: UserRegisterDto): Observable<UserDto> {
     return this.http.post<UserDto>(this.apiUrl, user);
   }
 

@@ -18,8 +18,12 @@ public class LevelController {
     }
 
     @GetMapping
-    public List<Level> getAll() {
-        return levelService.getAllLevel();
+    public ResponseEntity<?> getAll() {
+        try {
+            return ResponseEntity.ok(levelService.getAllLevel());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @GetMapping("/{id}")

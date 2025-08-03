@@ -12,7 +12,6 @@ import { QuestionDto } from '../../dtos/question.dto';
 })
 export class QuestionListComponent implements OnInit {
   questions: QuestionDto[] = [];
-  loading = false;
   error = '';
 
 
@@ -23,7 +22,6 @@ export class QuestionListComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.examId = params['examId'] ? +params['examId'] : undefined;
-      this.loading = true;
       this.questionService.getAll().subscribe({
         next: (data) => {
           if (this.examId) {
@@ -31,11 +29,9 @@ export class QuestionListComponent implements OnInit {
           } else {
             this.questions = data;
           }
-          this.loading = false;
         },
         error: (err) => {
           this.error = 'Không thể tải dữ liệu câu hỏi!';
-          this.loading = false;
         }
       });
     });

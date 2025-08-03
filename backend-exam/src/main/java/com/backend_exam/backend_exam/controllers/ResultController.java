@@ -18,8 +18,12 @@ public class ResultController {
     }
 
     @GetMapping
-    public List<Result> getAll() {
-        return resultService.getAllResult();
+    public ResponseEntity<?> getAll() {
+        try {
+            return ResponseEntity.ok(resultService.getAllResult());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @GetMapping("/{id}")

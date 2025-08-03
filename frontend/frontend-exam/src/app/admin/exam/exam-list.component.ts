@@ -13,8 +13,8 @@ import { LevelDto } from '../../dtos/level.dto';
 })
 export class ExamListComponent {
   exams: ExamDto[] = [];
-  loading = false;
   error = '';
+  success = '';
   showAddExamModal = false;
   newExam: any = {};
   selectedFile: File | null = null;
@@ -34,15 +34,12 @@ export class ExamListComponent {
   }
 
   loadExams() {
-    this.loading = true;
     this.examService.getAll().subscribe({
       next: (data) => {
         this.exams = data;
-        this.loading = false;
       },
       error: () => {
         this.error = 'Không thể tải danh sách bài thi!';
-        this.loading = false;
       }
     });
   }
@@ -75,10 +72,37 @@ export class ExamListComponent {
       next: () => {
         this.closeAddExamModal();
         this.loadExams();
+        this.success = 'Thêm bài thi thành công!';
+        setTimeout(() => this.success = '', 3000);
       },
       error: () => {
         this.error = 'Không thể thêm bài thi!';
+        setTimeout(() => this.error = '', 3000);
       }
     });
+  }
+
+  // Xóa bài thi
+  deleteExam(exam: ExamDto) {
+    if (confirm(`Bạn có chắc muốn xóa bài thi "${exam.examName}"?\n\nHành động này không thể hoàn tác!`)) {
+      this.examService.delete(exam.examId).subscribe({
+        next: () => {
+          this.success = `Đã xóa bài thi "${exam.examName}" thành công!`;
+          this.loadExams(); // Reload danh sách
+          setTimeout(() => this.success = '', 3000);
+        },
+        error: () => {
+          this.error = 'Không thể xóa bài thi! Vui lòng thử lại.';
+          setTimeout(() => this.error = '', 3000);
+        }
+      });
+    }
+  }
+
+  // Helper method để kiểm tra xem bài thi có câu hỏi không
+  hasQuestions(exam: ExamDto): boolean {
+    // Có thể kiểm tra dựa trên examId hoặc các thuộc tính khác
+    // Tạm thời return true để hiển thị cảnh báo
+    return true;
   }
 }

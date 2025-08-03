@@ -47,17 +47,10 @@
                 <div class="lesson-grid">
                   <!-- Các lesson-card mẫu giữ nguyên ở đây -->
                   <div class="lesson-card" *ngFor="let exam of grammarExams">
-                      <img src="../../../assets/{{exam.pictures}}" alt="{{ exam.examName }}">
+                      <img src="http://localhost:8088{{exam.pictures}}" alt="{{ exam.examName }}">
                       <h3>{{ exam.examName }}</h3>
                       <a [routerLink]="['/exersice']" [queryParams]="{ examId: exam.examId }" class="btn btn-lesson">HỌC NGAY</a>
                   </div>
-                  <!-- Thêm các bài thi ngữ pháp động từ backend -->
-                  <!-- <div class="lesson-card" *ngFor="let exam of grammarExams">
-                    <img src="../../../assets/nguphap1.png" alt="{{ exam.examName }}">
-                    <h3>{{ exam.examName }}</h3>
-                    <p class="mb-1">Cấp độ: {{ exam.level?.levelName || exam.levelId }}</p>
-                    <a [routerLink]="['/exersice']" class="btn btn-lesson">LÀM BÀI</a>
-                  </div> -->
                 </div>
             </div>
 
@@ -68,7 +61,7 @@
                 </div>
                 <div class="lesson-grid">
                     <div class="lesson-card" *ngFor="let exam of vocabularyExams">
-                        <img src="../../../assets/{{exam.pictures}}" alt="{{ exam.examName }}">
+                        <img src="http://localhost:8088{{exam.pictures}}" alt="{{ exam.examName }}">
                         <h3>{{ exam.examName }}</h3>
                         <a routerLink="/exersice" class="btn btn-lesson">HỌC NGAY</a>
                     </div>

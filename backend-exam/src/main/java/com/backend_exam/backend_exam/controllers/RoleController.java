@@ -18,8 +18,12 @@ public class RoleController {
     private final RoleService roleService;
 
     @GetMapping
-    public List<Role> getAll() {
-        return roleService.getAllRoles();
+    public ResponseEntity<?> getAll() {
+        try {
+            return ResponseEntity.ok(roleService.getAllRoles());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @GetMapping("/{id}")

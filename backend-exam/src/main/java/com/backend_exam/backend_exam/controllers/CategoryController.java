@@ -18,8 +18,15 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @GetMapping
-    public List<Category> getAll() {
-        return categoryService.getAllCategory();
+    //ResponseEntity là một lớp trong Spring Framework dùng để biểu diễn toàn bộ phản hồi HTTP,
+    // bao gồm mã trạng thái (status code), header, và phần thân (body).
+    // Dấu ? cho biết kiểu của phần thân có thể là bất kỳ kiểu nào.
+    public ResponseEntity<?> getAll() {
+        try {
+            return ResponseEntity.ok(categoryService.getAllCategory());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @GetMapping("/{id}")
@@ -33,8 +40,10 @@ public class CategoryController {
     }
 
     @PostMapping
+    //BindingResult: Đây là một interface của Spring dùng để chứa kết quả của quá trình kiểm tra hợp lệ (validation) của đối tượng categoryDTO
     public ResponseEntity<?> create(@RequestBody CategoryDTO categoryDTO, BindingResult result) {
         try {
+            //Kiểm tra lỗi validation
             if(result.hasErrors()) {
                 List<String> errorMessages = result.getFieldErrors().stream().map(FieldError::getDefaultMessage).toList();
                 return ResponseEntity.badRequest().body(errorMessages);

@@ -18,8 +18,12 @@ public class QuestionController {
     }
 
     @GetMapping
-    public List<Question> getAll() {
-        return questionService.getAllQuestion();
+    public ResponseEntity<?> getAll() {
+        try {
+            return ResponseEntity.ok(questionService.getAllQuestion());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @GetMapping("/{id}")
