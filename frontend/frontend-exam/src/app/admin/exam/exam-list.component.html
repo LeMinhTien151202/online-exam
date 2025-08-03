@@ -32,11 +32,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngIf="exams.length === 0"><td colspan="9" class="text-center">Không có dữ liệu</td></tr>
+        <tr *ngIf="exams.length === 0">
+          <td colspan="9" class="text-center">Không có dữ liệu</td>
+        </tr>
         <tr *ngFor="let exam of exams; let i = index">
           <td>{{ exam.examId }}</td>
           <td>
-            <img *ngIf="exam.pictures" [src]="'http://localhost:8088' + exam.pictures" alt="Ảnh bài thi" style="width:60px; height:40px; object-fit:cover; border-radius:4px;">
+            <img *ngIf="exam.pictures" [src]="'http://localhost:8088' + exam.pictures" alt="Ảnh bài thi"
+              style="width:60px; height:40px; object-fit:cover; border-radius:4px;">
           </td>
           <td>{{ exam.examName }}</td>
           <td>{{ exam.category?.categoryName || exam.categoryId }}</td>
@@ -44,15 +47,13 @@
           <td>{{ exam.createdAt | date:'short' }}</td>
           <td>{{ exam.createdUp | date:'short' }}</td>
           <td>
-            <button class="btn btn-info btn-sm" [routerLink]="['../exam', exam.examId, 'questions']">Xem câu hỏi</button>
+            <button class="btn btn-info btn-sm" [routerLink]="['../exam', exam.examId, 'questions']">Xem câu
+              hỏi</button>
           </td>
           <td>
             <button class="btn btn-sm btn-warning me-2" [routerLink]="['/admin/exam/edit', exam.examId]">Sửa</button>
-            <button
-              class="btn btn-sm btn-danger"
-              (click)="deleteExam(exam)"
-              title="Xóa bài thi">
-              <i class="fas fa-trash"></i> Xóa
+            <button class="btn btn-sm btn-danger" (click)="deleteExam(exam)" title="Xóa bài thi">
+              Xóa
             </button>
           </td>
         </tr>
@@ -61,8 +62,8 @@
   </div>
 
   <!-- Modal thêm bài thi -->
-   <!-- ngclass showAddExamModal true thêm show d-block vào -->
-    <!-- #addExamForm="ngForm" lấy các thuộc tính của ngForm để  [disabled]="addExamForm.invalid" khi ng dùng chưa điền xong form-->
+  <!-- ngclass showAddExamModal true thêm show d-block vào -->
+  <!-- #addExamForm="ngForm" lấy các thuộc tính của ngForm để  [disabled]="addExamForm.invalid" khi ng dùng chưa điền xong form-->
   <div class="modal" tabindex="-1" [ngClass]="{ 'show d-block': showAddExamModal }" *ngIf="showAddExamModal">
     <div class="modal-dialog">
       <div class="modal-content">

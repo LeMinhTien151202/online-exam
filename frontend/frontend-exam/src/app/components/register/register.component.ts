@@ -44,7 +44,7 @@ export class RegisterComponent {
 
         // Tạo user mới
         const newUser: UserRegisterDto = {
-          roleId: 2, // User thường
+          roleId: 1, // User thường
           userName: this.username,
           email: this.email,
           phone: '',

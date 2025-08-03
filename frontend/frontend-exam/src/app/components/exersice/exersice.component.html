@@ -20,9 +20,9 @@
       <!-- Cột trái: thông tin bài thi và banner xanh -->
       <aside class="exersice-sidebar">
         <div class="exam-info">
-          <img class="exam-img" [src]="'../../../assets/' + examInfo?.pictures" alt="Ảnh bài thi" />
+          <img class="exam-img" [src]="'http://localhost:8088' + examInfo?.pictures" alt="Ảnh bài thi" />
           <div class="exam-title">{{ examInfo?.examName }}</div>
-          <a routerLink="/exam-list" class="return-link">
+          <a routerLink="/" class="return-link">
             <i class="fas fa-chevron-left"></i> Trở lại
           </a>
         </div>

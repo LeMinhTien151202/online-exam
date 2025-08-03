@@ -45,25 +45,22 @@ export class ExersiceComponent implements OnInit {
             this.examInfo = undefined;
           }
         });
-        // Lấy kết quả từ API, lọc theo userId và examId
-        this.resultService.getAll().subscribe({
-          next: (results) => {
-            this.previousResults = results.filter((r: any) => Number(r.userId) === Number(this.userId) && Number(r.examId) === Number(this.examId));
-          },
-          error: () => {
-            this.previousResults = [];
-          }
-        });
-        this.loading = true;
+        // // Lấy kết quả từ API, lọc theo userId và examId
+        // this.resultService.getAll().subscribe({
+        //   next: (results) => {
+        //     this.previousResults = results.filter((r: any) => Number(r.userId) === Number(this.userId) && Number(r.examId) === Number(this.examId));
+        //   },
+        //   error: () => {
+        //     this.previousResults = [];
+        //   }
+        // });
         this.questionService.getByExamId(this.examId).subscribe({
           next: (data) => {
             this.questions = data;
             this.userAnswers = new Array(data.length).fill('');
-            this.loading = false;
           },
           error: (err) => {
             this.error = 'Không thể tải dữ liệu câu hỏi!';
-            this.loading = false;
           }
         });
       } else {

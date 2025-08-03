@@ -108,6 +108,7 @@ export class UserListComponent implements OnInit {
     if (user.role) {
       return user.role.roleName.toLowerCase().includes('admin');
     }
+    //ktra qua id xem cso phải í bằng 2 là quyen admin ko
     return user.roleId === 2;
   }
 

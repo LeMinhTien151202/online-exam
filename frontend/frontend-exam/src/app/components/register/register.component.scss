@@ -46,7 +46,7 @@ h2 {
     outline: none;
     transition: 0.3s;
 }
-
+//trạng thái ban đầu button nam trong ô nhập
 .input-box label {
     position: absolute;
     top: 50%;
@@ -56,7 +56,7 @@ h2 {
     pointer-events: none;
     transition: 0.3s;
 }
-
+// click vào trường có dl vaf ko có dl dịch chuyển lên top giảm font đổi màu
 .input-box input:focus ~ label,
 .input-box input:valid ~ label {
     top: 0;

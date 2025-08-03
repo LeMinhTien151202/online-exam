@@ -42,31 +42,31 @@
           <td>
             <!-- Trường hợp 1: User thường - hiển thị nút Admin và Khóa -->
             <div *ngIf="isRegularUser(user)">
-              <button class="btn btn-sm btn-primary me-1 mb-1" (click)="makeAdmin(user)">
-              Admin
+              <button class="btn btn-sm btn-primary me-1" (click)="makeAdmin(user)">
+               Admin
               </button>
-              <button class="btn btn-sm btn-danger me-1 mb-1" (click)="lockUser(user)">
+              <button class="btn btn-sm btn-danger me-1" (click)="lockUser(user)">
                 <i class="fas fa-lock"></i> Khóa
               </button>
             </div>
 
             <!-- Trường hợp 2: Admin - hiển thị nút User và Khóa -->
             <div *ngIf="isAdmin(user)">
-              <button class="btn btn-sm btn-warning me-1 mb-1" (click)="makeUser(user)">
-                <i class="fas fa-user"></i> User
+              <button class="btn btn-sm btn-warning me-1" (click)="makeUser(user)">
+                 User
               </button>
-              <button class="btn btn-sm btn-danger me-1 mb-1" (click)="lockUser(user)">
+              <button class="btn btn-sm btn-danger me-1" (click)="lockUser(user)">
                 <i class="fas fa-lock"></i> Khóa
               </button>
             </div>
 
             <!-- Trường hợp 3: Tài khoản bị khóa - chỉ hiển thị nút Mở khóa -->
             <div *ngIf="isLocked(user)">
-              <button class="btn btn-sm btn-warning me-1 mb-1" (click)="makeUser(user)">
-                <i class="fas fa-user"></i> User
+              <button class="btn btn-sm btn-warning me-1" (click)="makeUser(user)">
+                 User
               </button>
-              <button class="btn btn-sm btn-primary me-1 mb-1" (click)="makeAdmin(user)">
-              Admin
+              <button class="btn btn-sm btn-primary me-1" (click)="makeAdmin(user)">
+                Admin
               </button>
             </div>
           </td>
